@@ -1,10 +1,16 @@
-import { AccumulativeShadows, Gltf, RandomizedLight } from "@react-three/drei";
+import {
+  AccumulativeShadows,
+  Gltf,
+  RandomizedLight,
+  useGLTF,
+} from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useMemo } from "react";
 import { useGameEngine } from "../hooks/useGameEngine";
 import { motion } from "framer-motion-3d";
 import { degToRad } from "three/src/math/MathUtils";
 import { Card } from "./Card";
+import { Player } from "./Player";
 export const Gameboard = () => {
   const viewport = useThree((state) => state.viewport);
   const scalingRatio = Math.min(1, viewport.width / 12);
@@ -50,6 +56,7 @@ export const Gameboard = () => {
       />
       {shadows}
 
+      {/* DECK */}
       <group position-x={4} position-z={-2}>
         {deck.map((_, index) => (
           <motion.group
@@ -84,6 +91,27 @@ export const Gameboard = () => {
           </motion.group>
         ))}
       </group>
+
+      {/* TREASURE */}
+      {[...Array(gems)].map((_, index) => (
+        <Gltf
+          key={index}
+          src="/models/UI_Gem_Blue.gltf"
+          position-x={index * 0.5}
+          position-y={0.25}
+          scale={0.5}
+        />
+      ))}
+
+      {/* CHARACTERS */}
+      {players.map((player, index) => (
+        <group key={player.id}>
+          <Player index={index} player={player} />
+        </group>
+      ))}
     </group>
   );
 };
+
+useGLTF.preload("/models/Gameboard.glb");
+useGLTF.preload("/models/UI_Gem_Blue.gltf");

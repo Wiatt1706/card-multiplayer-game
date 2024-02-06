@@ -278,7 +278,6 @@ export const GameEngineProvider = ({ children }) => {
         ...gameState,
         startGame,
         getCard,
-
       }}
     >
       {children}

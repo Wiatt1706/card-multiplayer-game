@@ -6,7 +6,7 @@ import { UI } from "./components/UI";
 import { MotionConfig } from "framer-motion";
 import { isStreamScreen } from "playroomkit";
 
-const DEBUG = true;
+const DEBUG = false;
 
 function App() {
   return (
