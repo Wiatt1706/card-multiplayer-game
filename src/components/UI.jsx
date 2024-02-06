@@ -60,7 +60,7 @@ export const UI = () => {
   }
 
   return (
-    <div className="text-white drop-shadow-xl fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col">
+    <div className="text-white drop-shadow-xl fixed top-0 left-0 right-0 bottom-0 z-10 flex flex-col pointer-events-none">
       <div className="p4 w-full flex items-center justify-between">
         <h2 className="text-2xl font-bold text-center uppercase">
           Round {round} / {NB_ROUNDS}

@@ -1,13 +1,15 @@
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { MobileController } from "./MobileController";
+import { isStreamScreen } from "playroomkit";
+import { Gameboard } from "./Gameboard";
 
 export const Experience = () => {
   return (
     <>
       <OrbitControls />
-      <mesh>
-        <boxGeometry />
-        <meshNormalMaterial />
-      </mesh>
+      {isStreamScreen() ? <Gameboard /> : <MobileController />}
+
+      <Environment preset="dawn" background blur={2} />
     </>
   );
 };
